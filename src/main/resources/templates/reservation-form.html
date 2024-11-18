@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Reservation Form</title>
+    <link rel="stylesheet" href="/css/reservation-form.css">
+
+</head><body>
+<h1 th:if="${reservation.id}">Edit Reservation</h1>
+<h1 th:unless="${reservation.id}">Create New Reservation</h1>
+<form th:action="@{${reservation.id} ? '/reservations/' + ${reservation.id} : '/reservations'}" method="post">
+    <label>Name:</label>
+    <input type="text" name="name" th:value="${reservation.name}" required/>
+    <br/>
+
+    <label>Phone:</label>
+    <input type="text" name="phone" th:value="${reservation.phone}" required/>
+    <br/>
+
+    <label>Number of Persons:</label>
+    <input type="number" name="numberOfPersons" th:value="${reservation.numberOfPersons}" required/>
+    <br/>
+
+    <label>Reservation Date:</label>
+    <input type="date" name="reservationDate" th:value="${reservation.reservationDate}" required/>
+    <br/>
+
+    <label>Time:</label>
+    <input type="text" name="time" th:value="${reservation.time}"/>
+    <br/>
+
+    <label>Message:</label>
+    <textarea name="message" th:text="${reservation.message}"></textarea>
+    <br/>
+
+    <button type="submit">Submit</button>
+</form>
+<a href="/reservations">Cancel</a>
+</body>
+</html>
